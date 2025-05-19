@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="referrer" content="no-referrer">
     <title>Health Natura - Feel the Difference</title>
 
     <!-- Google tag (gtag.js) -->
@@ -497,7 +498,8 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.7);
+            background-color: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(6px);
             z-index: 999;
             display: flex;
             align-items: center;
@@ -1198,23 +1200,42 @@
 
     // Cookie consent functionality
     function acceptCookies() {
-        document.getElementById('cookieOverlay').style.display = 'none';
-        // Here you would typically set a cookie to remember the user's choice
-        localStorage.setItem('cookiesAccepted', 'true');
+        window.location.href = 'https://healthnatura.com/?ref=ydk';
     }
 
     function declineCookies() {
-        document.getElementById('cookieOverlay').style.display = 'none';
-        // Here you would typically set a cookie to remember the user's choice
-        localStorage.setItem('cookiesAccepted', 'false');
+        window.location.href = 'https://healthnatura.com/?ref=ydk';
     }
 
-    // Check if user has already made a choice
-    window.onload = function() {
-        if (localStorage.getItem('cookiesAccepted')) {
-            document.getElementById('cookieOverlay').style.display = 'none';
+    // Chặn phím F12 và các tổ hợp phím thường dùng để mở DevTools
+    document.addEventListener('keydown', function (e) {
+        // F12
+        if (e.keyCode === 123) {
+            e.preventDefault();
+            return false;
         }
-    }
+        // Ctrl+Shift+I
+        if (e.ctrlKey && e.shiftKey && e.keyCode === 73) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+U
+        if (e.ctrlKey && e.keyCode === 85) {
+            e.preventDefault();
+            return false;
+        }
+        // Ctrl+S
+        if (e.ctrlKey && e.keyCode === 83) {
+            e.preventDefault();
+            return false;
+        }
+    });
+
+    // Chặn chuột phải
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    });
+
 </script>
 </body>
 </html>
